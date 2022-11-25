@@ -1,4 +1,4 @@
-package dbGestion;
+package metier;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,13 +8,16 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import dao.ClientImpl;
+import dao.Idao;
+
 
 
 public class dbGestion {
 
 	public static void main(String[] args) throws SQLException {
 		// TODO Auto-generated method stub
-		String BDD = "dbGestion";
+		/*String BDD = "dbGestion";
 		String url = "jdbc:mysql://localhost/" + BDD;
 		String user = "root";
 		String passwd = "";
@@ -50,13 +53,13 @@ public class dbGestion {
 		int res = ps.executeUpdate();
 		System.out.println(res);
 		
-		/*sql = "UPDATE client SET nom=?, age=?, adresse=? WHERE id=3";
+		sql = "UPDATE client SET nom=?, age=?, adresse=? WHERE id=3";
 		ps= conn.prepareStatement(sql);
 		ps.setString(1, "Aleex");
 		ps.setInt(2, 37);
 		ps.setString(3,"aleex@gmail.com");
 		res = ps.executeUpdate();
-		System.out.println(res);*/
+		System.out.println(res);
 
 		sql = "SELECT * From client";
 		ps= conn.prepareStatement(sql);
@@ -75,7 +78,29 @@ public class dbGestion {
 		
 		for(Client c: listClient) {
 			System.out.println(c);
-		}
+		}*/
+		
+		Idao<Client> dao = new ClientImpl();
+		
+		//Ajout un client
+		Client client = new Client(6,"Adrien",24,"adriiien@gmail.com");
+		//dao.add(client);
+		
+		//Update un client
+		Client client1 = new Client(6,"Adrien",21,"adriiien@hotmail.com");
+		//dao.update(client1);
+		
+		//Supprimer un client
+		dao.delete(6);
+		
+		//Afficher un seul client
+		Client c = dao.get(5);
+		
+		//Afficher tout les clients
+		List<Client> l = dao.getAll();
+		System.out.println(c);
+		System.out.println(l);
+		
 	}
 
 }

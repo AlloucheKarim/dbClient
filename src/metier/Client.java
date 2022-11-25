@@ -1,4 +1,4 @@
-package dbGestion;
+package metier;
 
 public class Client {
 	private int id;
@@ -11,6 +11,9 @@ public class Client {
 		this.nom = nom;
 		this.age = age;
 		this.adresse = adresse;
+	}
+	public Client() {
+
 	}
 	public int getId() {
 		return id;
